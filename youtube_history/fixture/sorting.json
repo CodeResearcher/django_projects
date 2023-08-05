@@ -1,0 +1,63 @@
+[
+    {
+        "model": "otd.sorting",
+        "pk": 1,
+        "fields": {
+            "rank": 1,
+            "display_name": "Default",
+            "column_name": "default",
+            "ascending": false
+        }
+    },
+    {
+        "model": "otd.sorting",
+        "pk": 2,
+        "fields": {
+            "rank": 2,
+            "display_name": "Year",
+            "column_name": "published_at__year",
+            "ascending": false
+        }
+    },
+    {
+        "model": "otd.sorting",
+        "pk": 3,
+        "fields": {
+            "rank": 3,
+            "display_name": "Views",
+            "column_name": "view_count",
+            "ascending": false
+        }
+    },
+    {
+        "model": "otd.sorting",
+        "pk": 4,
+        "fields": {
+            "rank": 4,
+            "display_name": "Comments",
+            "column_name": "comment_count",
+            "ascending": false
+        }
+    },
+    {
+        "model": "otd.sorting",
+        "pk": 5,
+        "fields": {
+            "rank": 5,
+            "display_name": "Likes",
+            "column_name": "like_count",
+            "ascending": false
+        }
+    },
+    {
+        "model": "otd.sorting",
+        "pk": 6,
+        "fields": {
+            "rank": 6,
+            "display_name": "Duration",
+            "column_name": "duration",
+            "ascending": false
+        }
+    }
+
+]

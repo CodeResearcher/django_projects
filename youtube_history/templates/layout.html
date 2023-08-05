@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% block title %}
+    {% endblock %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--<link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />-->
+    <!--<link rel="stylesheet" href="https://rawgithub.com/arschmitz/jquery-mobile-datepicker-wrapper/master/jquery.mobile.datepicker.css" />-->
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script src="https://kit.fontawesome.com/ea11ced0a3.js" crossorigin="anonymous"></script>
+    <!--<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>-->
+    <!--<script src="https://rawgithub.com/arschmitz/jquery-mobile-datepicker-wrapper/master/jquery.mobile.datepicker.js"></script>-->
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'youtube_history/site.css' %}"/>
+</head>
+ 
+<body>
+    <div class="w3-container">
+        <div class="w3-bar w3-black w3-large w3-top">
+            <form action="{% url 'index' %}" method="post" id="filter-form">
+            {% csrf_token %}
+            <a href="{% url 'index' %}" class="w3-bar-item"><i class="fa fa-home"></i></a>
+            {% block navigation %}
+            {% endblock %}
+            </form>
+        </div>
+        {% block content %}
+        {% endblock %} 
+        <div class="w3-bar w3-white w3-medium w3-bottom w3-mobile">
+            <div class="w3-bar-item"><a href="https://github.com/CodeResearcher"><i class="fa fa-github" style="font-size:24px"></i></a></div>
+            <div class="w3-bar-item"><a href="privacy"><i class='fas fa-user-shield' style='font-size:24px'></i></a></div>
+        </div>
+    </div>
+</body>
+</html>

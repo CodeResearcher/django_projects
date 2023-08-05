@@ -1,0 +1,4 @@
+*.pyc
+db.sqlite3
+web_project/.env
+youtube_history/management/commands/transfer_tables.sql

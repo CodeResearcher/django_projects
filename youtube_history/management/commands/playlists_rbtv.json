@@ -1,0 +1,108 @@
+{
+    "playlists": [
+        {
+            "id": "UUQvTDmHza8erxZqDkjQ4bQQ",
+            "rank": 1,
+            "title": "RBTV",
+            "color": "#e60007",
+            "channel_id": "UCQvTDmHza8erxZqDkjQ4bQQ",
+            "channel_title": "ROCKETBEANSTV"
+        },
+        {
+            "id": "UUkfDws3roWo1GaA3pZUzfIQ",
+            "rank": 2,
+            "title": "RBTV Let's Play",
+            "color": "#530c0a",
+            "channel_id": "UCkfDws3roWo1GaA3pZUzfIQ",
+            "channel_title": "RocketBeansLetsPlay"
+        },
+        {
+            "id": "UUtSP1OA6jO4quIGLae7Fb4g",
+            "rank": 3,
+            "title": "RBTV Gaming",
+            "color": "#1a2253",
+            "channel_id": "UCtSP1OA6jO4quIGLae7Fb4g",
+            "channel_title": "RocketBeansGaming"
+        },
+        {
+            "id": "UUSPhBkVTeztDGsz9-rdsNvw",
+            "rank": 4,
+            "title": "Kino+",
+            "color": "#d04083",
+            "channel_id": "UCSPhBkVTeztDGsz9-rdsNvw",
+            "channel_title": "KinoPlus"
+        },
+        {
+            "id": "UUFBapHA35loZ3KZwT_z3BsQ",
+            "rank": 5,
+            "title": "GameTwo",
+            "color": "#bdbea9",
+            "channel_id": "UCFBapHA35loZ3KZwT_z3BsQ",
+            "channel_title": "GameTwo"
+        },
+        {
+            "id": "UUe1fCMd_TO6iMnJ0ymu2Z7g",
+            "rank": 6,
+            "title": "Eddy",
+            "color": "#a941e8",
+            "channel_id": "UCe1fCMd_TO6iMnJ0ymu2Z7g",
+            "channel_title": "GrumpyEde"
+        },
+        {
+            "id": "UUjnvwZLER_O-gTTGwTKKhbg",
+            "rank": 7,
+            "title": "Nils",
+            "color": "#eeb623",
+            "channel_id": "UCjnvwZLER_O-gTTGwTKKhbg",
+            "channel_title": "NilsBomhoffLIVE"
+        },
+        {
+            "id": "UUVsSnnJ8fL5PwOokVLsbAMw",
+            "rank": 8,
+            "title": "Simon",
+            "color": "",
+            "channel_id": "UCVsSnnJ8fL5PwOokVLsbAMw",
+            "channel_title": "SimonKratschmer"
+        },
+        {
+            "id": "UUDAMHRTNtvuZ7lC_BSYepFw",
+            "rank": 9,
+            "title": "Florentin",
+            "color": "#fcc7a9",
+            "channel_id": "UCDAMHRTNtvuZ7lC_BSYepFw",
+            "channel_title": "florentin_will"
+        },
+        {
+            "id": "UUXnjqxd4iNQgKUDEX4Meq2g",
+            "rank": 10,
+            "title": "Janina",
+            "color": "#ff735f",
+            "channel_id": "UCXnjqxd4iNQgKUDEX4Meq2g",
+            "channel_title": "itzjanina"
+        },
+        {
+            "id": "UUPTLbi53R6_uZIGzsx_0Vtw",
+            "rank": 11,
+            "title": "Krogi",
+            "color": "#ffff01",
+            "channel_id": "UCPTLbi53R6_uZIGzsx_0Vtw",
+            "channel_title": "TheKrogmann"
+        },
+        {
+            "id": "UUIX8gfIzRp_bHGbgCkG8Yaw",
+            "rank": 12,
+            "title": "Marah",
+            "color": "#062542",
+            "channel_id": "UCIX8gfIzRp_bHGbgCkG8Yaw",
+            "channel_title": "m_a_r_a_h"
+        },
+        {
+            "id": "UUDQZU2D92YbMKBm4ZnuCwkg",
+            "rank": 13,
+            "title": "Viet",
+            "color": "#fd813a",
+            "channel_id": "UCDQZU2D92YbMKBm4ZnuCwkg",
+            "channel_title": "pixelviet"
+        }
+    ]
+}

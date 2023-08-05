@@ -1,0 +1,146 @@
+{% extends 'layout.html' %}
+
+{% block navigation %}
+
+  <!--DATE-->
+  <div class="w3-bar-item w3-mobile">
+    <input type="text" name="datepicker" id="datepicker">
+  </div>
+  <!--FILTER-->
+  <div class="w3-dropdown-hover w3-mobile">
+    <button class="w3-button">Filter</button>
+    <div class="w3-dropdown-content w3-bar-block">
+      <div class="w3-bar-item">
+        <input class="w3-check filter" type="checkbox" id="checkAll" name="checkAll" {% if all_playlists.count == checked_playlist_ids|length %}checked{% endif %}>
+        <label>All</label>
+      </div>
+      {% for playlist in all_playlists %}
+        <div class="w3-bar-item">
+          <input class="w3-check filter" type="checkbox" name="playlist" value='{{ playlist.id }}' {% if playlist.id in checked_playlist_ids %}checked{% endif %}>
+          <label>{{ playlist.title }}</label>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+  <!--SORTING-->
+  <div class="w3-dropdown-hover w3-mobile">
+    <button class="w3-button">Sorting</button>
+    <div class="w3-dropdown-content w3-bar-block">
+      {% for s in sorting.all %}
+        <div class="w3-bar-item">
+          <input class="w3-radio filter" type="radio" name="sorting" value="{{ s.column_name }}" {% if s.column_name == sorting.selected %}checked{% endif %}>
+          <label>{{ s.display_name }}</label>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+ {% endblock %}
+
+ {% block content %}
+
+  <div class="w3-margin" id="accordion">
+    {% for p in checked_playlists %}
+      {% with playlist=p.Playlist %}
+        <h3>{{ playlist.title }} [{{ p.Count }} {% if p.Count == 1 %}Video{% else %}Videos{% endif %}]</h3>
+        <ul class="w3-ul">
+          {% for video in videos %}
+            {% if video.playlist.id == playlist.id %}            
+              <li class="w3-bar">
+                <!--THUMBNAIL-->
+                <div class="w3-bar-item w3-display-container w3-text-white">
+                  <a href="{{ video.video_url }}">
+                    <div class="w3-display-topleft w3-black w3-text-white w3-margin">{{ video.title }}</div>
+                    <img src="{{ video.thumbnail_url }}">
+                    <div class="w3-container w3-display-bottomright w3-text-white w3-margin-right"><p>{{ video.duration }}</p></div>
+                  </a>
+                </div>
+                <div class="w3-bar-item">
+                  <!--VIDEO INFOS-->
+                  <table class="w3-table-all">
+                    <tr>
+                      <th>Published</th>
+                      <th>Views</th>
+                      <th>Likes</th>
+                      <th>Comments</th>
+                    </tr>
+                    <tr>
+                      <td>{{ video.published_at | date:'d.m.Y' }}</td>
+                      <td>{{ video.view_count }}</td>
+                      <td>{{ video.like_count }}</td>
+                      <td>{{ video.comment_count }}</td>
+                    </tr>
+                  </table>
+                  <br/>
+                  {% if video.top_comment_likes > 0 %}
+                    <!--TOP COMMENT-->
+                    <div class="w3-margin-left"><b>Top Comment</b></div>
+                    <div class="w3-bar-item w3-card-4 w3-display-container" style="min-width:480px;width:100%;max-width:480px;">
+                      <span class="w3-display-topleft w3-margin-top w3-margin-left">
+                        {{ video.top_comment_author }}
+                      </span>
+                      <div class="w3-panel w3-padding-16">
+                        {% autoescape off %}
+                        <p class="w3-medium"><i>{{ video.top_comment_text|striptags }}</i></p>
+                        {% endautoescape %}
+                      </div>
+                      <span class="w3-display-bottomright w3-margin-bottom w3-margin-right">
+                        {{ video.top_comment_likes }} Likes
+                      </span>
+                    </div>
+                  {% endif %}
+                </div>
+              </li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      {% endwith %}
+    {% endfor %}
+  </div>
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $("#checkAll").click(function(){
+        $('input:checkbox').not(this).prop('checked', this.checked);
+      });
+      $('.filter').click(function() {
+        $('#filter-form').submit();
+      });
+    });
+    $(function() {
+      $( "#accordion" ).accordion({
+        collapsible: true,
+        active: false,
+        heightStyle: "content",
+        icons: { "header": "ui-icon-plus", "activeHeader": "ui-icon-minus" }
+      });
+      $( "#toggle" ).button().on( "click", function() {
+        if ( $( "#accordion" ).accordion( "option", "icons" ) ) {
+          $( "#accordion" ).accordion( "option", "icons", null );
+        } else {
+          $( "#accordion" ).accordion( "option", "icons", icons );
+        }
+      });
+      $("#datepicker").datepicker({
+        showOtherMonths: true,
+        selectOtherMonths: true,
+        changeMonth: true,
+        changeYear: true,
+        minDate: new Date(2005,4,24),
+        maxDate: '-1Y',
+        //yearRange: '2021:2022',
+        defaultDate: '+0',
+        firstDay: 1,
+        dateFormat: 'dd.mm.yy', //dd.mm.yy
+        onSelect: function (date, datepicker) {
+          if (date != '') {
+            $('input:checkbox').not(this).prop('checked', this.checked);
+            $('#filter-form').submit();
+          }
+        }
+      });
+      $('#datepicker').datepicker('setDate', '{{ selected_date_str }}');
+    });
+  </script>
+
+{% endblock %}

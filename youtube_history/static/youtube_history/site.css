@@ -1,0 +1,23 @@
+.ui-datepicker-current-day .ui-state-active {
+    background-color:black;
+    border-color:black;
+}
+.ui-state-active {
+    background-color:black;
+    border-color:black;
+}
+#datepicker {
+    width: 130px;
+}
+.w3-bar {
+    overflow:visible;
+}
+.w3-top {
+    position:relative;
+}
+input[type=checkbox] {
+    accent-color:black;
+}
+input[type=radio] {
+    accent-color:black;
+}
