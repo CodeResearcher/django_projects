@@ -32,7 +32,7 @@ API_KEY = env('API_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*.eu.pythonanywhere.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['.eu.pythonanywhere.com', 'localhost', '127.0.0.1']
 
 # Application definition
 
