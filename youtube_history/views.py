@@ -11,7 +11,10 @@ def index(request):
 
     #SELECTED DATE
     selected_date_str = request.POST.get('datepicker')
-    logger.info('Selected Date: ' + selected_date_str)
+    if(selected_date_str != None):
+        logger.info('Selected Date: ' + selected_date_str)
+    else:
+        logger.info('Selected Date: None')
     if(selected_date_str == '' or selected_date_str == None):
         selected_date = datetime.now()
         selected_date_str = datetime.now().strftime('%d.%m.%Y')
@@ -35,7 +38,10 @@ def index(request):
 
     #FILTER
     checked_playlist_ids = request.POST.getlist('playlist')
-    logger.info('Filter:\n' + '\n'.join(checked_playlist_ids))
+    if(checked_playlist_ids != None):
+        logger.info('Filter:\n' + '\n'.join(checked_playlist_ids))
+    else:
+        logger.info('Filter: None')
     if(checked_playlist_ids == [] or checked_playlist_ids == None):
         checked_playlist_ids = [p['id'] for p in all_playlists]
         checked_playlists = all_playlists
@@ -59,7 +65,10 @@ def index(request):
 
     #SORTING
     selected_sorting_item = request.POST.get('sorting')
-    logger.info('Sorting: ' + selected_sorting_item)
+    if(selected_sorting_item != None):
+        logger.info('Sorting: ' + selected_sorting_item)
+    else:
+        logger.info('Sorting: None')
     if(selected_sorting_item == '' or selected_sorting_item == None):
         selected_sorting_item = 'default'
     all_sorting_items = Sorting.objects.values()
