@@ -1,4 +1,9 @@
 *.pyc
+*.log
+__pycache__
 db.sqlite3
-web_project/.env
+.env
+.venv 
+env/ 
+venv/
 youtube_history/management/commands/transfer_tables.sql
