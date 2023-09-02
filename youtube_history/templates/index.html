@@ -63,12 +63,14 @@
                       <th>Views</th>
                       <th>Likes</th>
                       <th>Comments</th>
+                      <th>Last Check</th>
                     </tr>
                     <tr>
                       <td>{{ video.published_at | date:'d.m.Y' }}</td>
                       <td>{{ video.view_count }}</td>
                       <td>{{ video.like_count }}</td>
                       <td>{{ video.comment_count }}</td>
+                      <td>{{ video.modified_on | date:'d.m.Y' }}</td>
                     </tr>
                   </table>
                   <br/>
@@ -131,7 +133,7 @@
         //yearRange: '2021:2022',
         defaultDate: '+0',
         firstDay: 1,
-        dateFormat: 'dd.mm.yy', //dd.mm.yy
+        dateFormat: 'dd.mm.', //dd.mm.yy
         onSelect: function (date, datepicker) {
           if (date != '') {
             $('input:checkbox').not(this).prop('checked', this.checked);
