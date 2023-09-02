@@ -120,6 +120,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
+#e.g. /home/<username>/django_projects/static
+#e.g. https://<domain>/static/<my_app>/site.css
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 # Default primary key field type
@@ -131,6 +133,7 @@ SECURE_HSTS_SECONDS = 2592000
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 SECURE_HSTS_PRELOAD = True
 SECURE_SSL_REDIRECT = True
+SESSION_SAVE_EVERY_REQUEST = True
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
 
