@@ -11,6 +11,7 @@
             "program": "${workspaceFolder}\\manage.py",
             "args": [
                 "runserver",
+                "192.168.178.22:8000",
                 //"getvideo",
                 //"--initialize=playlists_rbtv.json",
                 //"--limit=10",
