@@ -40,7 +40,7 @@
  {% block content %}
 
   <div class="w3-margin" id="accordion">
-    {% for p in checked_playlists %}
+    {% for p in checked_playlists_extended %}
       {% with playlist=p.Playlist %}
         <h3>{{ playlist.title }} [{{ p.Count }} {% if p.Count == 1 %}Video{% else %}Videos{% endif %}]</h3>
         <ul class="w3-ul">

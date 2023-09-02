@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.views.decorators.csrf import csrf_protect
 from django.views.generic.list import ListView
 from youtube_history.models import Video, Playlist, Sorting
 from datetime import datetime, date, timedelta
@@ -7,6 +8,7 @@ import logging
 
 logger = logging.getLogger(__name__)
 
+@csrf_protect
 def index(request):
 
     #SELECTED DATE
@@ -32,23 +34,27 @@ def index(request):
     )
 
     #All Playlists
+    '''
     all_playlists = Playlist.objects.filter(
         id__in = [v.playlist.id for v in videos]
     ).values()
+    '''
+    all_playlists = Playlist.objects.all().values()
 
     #FILTER
     checked_playlist_ids = request.POST.getlist('playlist')
-    if(checked_playlist_ids != None):
-        logger.info('Filter:\n' + '\n'.join(checked_playlist_ids))
-    else:
-        logger.info('Filter: None')
     if(checked_playlist_ids == [] or checked_playlist_ids == None):
-        checked_playlist_ids = [p['id'] for p in all_playlists]
-        checked_playlists = all_playlists
-    else:    
-        checked_playlists = Playlist.objects.filter(
-            id__in = checked_playlist_ids
-        ).values()
+        logger.info('Filter: None')
+        if('playlist' in request.session):
+            checked_playlist_ids = request.session['playlist']
+        else:
+            checked_playlist_ids = [p['id'] for p in all_playlists]
+    else:
+        logger.info('Filter:\n' + '\n'.join(checked_playlist_ids))
+        request.session['playlist'] = checked_playlist_ids
+    checked_playlists = Playlist.objects.filter(
+        id__in = checked_playlist_ids
+    ).values()
     
     #Videos by Checked Playlist
     videos = videos.filter(playlist__in = checked_playlist_ids)
@@ -64,18 +70,18 @@ def index(request):
             })
 
     #SORTING
-    selected_sorting_item = request.POST.get('sorting')
-    if(selected_sorting_item != None):
-        logger.info('Sorting: ' + selected_sorting_item)
-    else:
-        logger.info('Sorting: None')
+    selected_sorting_item = request.POST.get('sorting')       
     if(selected_sorting_item == '' or selected_sorting_item == None):
-        selected_sorting_item = 'default'
+        logger.info('Sorting: None')
+        if('sorting' in request.session):
+            selected_sorting_item = request.session['sorting']
+        else:
+            selected_sorting_item = 'default'
+    else:
+        logger.info('Sorting: ' + selected_sorting_item)
+        request.session['sorting'] = selected_sorting_item
     all_sorting_items = Sorting.objects.values()
-    sorting = {
-        'selected': selected_sorting_item, 
-        'all': all_sorting_items
-    }
+
     if(selected_sorting_item == 'default'):
         videos = videos.order_by(
             'playlist__rank', 
@@ -95,12 +101,17 @@ def index(request):
         'selected_date_str': selected_date_str,
         'videos': videos,
         'all_playlists': all_playlists,
-        'checked_playlists': checked_playlists_extended,
+        'checked_playlists': checked_playlists,
+        'checked_playlists_extended': checked_playlists_extended,
         'checked_playlist_ids': checked_playlist_ids,
-        'sorting': sorting
+        'sorting': {
+            'selected': selected_sorting_item, 
+            'all': all_sorting_items
+        }
     }
     
-    return render(request, 'index.html', context)
+    response = render(request, 'index.html', context)
+    return response
 
 def privacy(request):
     return render(request, 'privacy.html')
