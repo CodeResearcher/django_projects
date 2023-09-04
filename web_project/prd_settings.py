@@ -44,7 +44,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'youtube_history.apps.YoutubeHistoryConfig',
-    'embed_video'
 ]
 
 MIDDLEWARE = [
