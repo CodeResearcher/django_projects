@@ -1,4 +1,5 @@
 import os
+import sys
 import json
 import argparse
 from datetime import datetime, timedelta
@@ -40,7 +41,7 @@ class Command(BaseCommand):
         except googleapiclient.errors.HttpError as err:
             if err.status_code == 403 and err.error_details[0]['reason'] == 'quotaExceeded':
                 print(err.reason)
-                return None
+                sys.exit()
             else:
                 print('Playlist {0} could not be retrieved! {1}'.format(playlist_id, err))
         return None
@@ -57,7 +58,7 @@ class Command(BaseCommand):
         except googleapiclient.errors.HttpError as err:
             if err.status_code == 403 and err.error_details[0]['reason'] == 'quotaExceeded':
                 print(err.reason)
-                return None
+                sys.exit()
             else:
                 print('Infos for Videos {0} could not be retrieved! {1}'.format(video_ids, err))
         return None
@@ -81,7 +82,7 @@ class Command(BaseCommand):
             except googleapiclient.errors.HttpError as err:
                 if err.status_code == 403 and err.error_details[0]['reason'] == 'quotaExceeded':
                     print(err.reason)
-                    return None
+                    sys.exit()
                 else:
                     print('Category {0} could not be retrieved! {1}'.format(category_id, err))
 
@@ -114,7 +115,7 @@ class Command(BaseCommand):
         except googleapiclient.errors.HttpError as err:
             if err.status_code == 403 and err.error_details[0]['reason'] == 'quotaExceeded':
                 print(err.reason)
-                return None
+                sys.exit()
             elif err.status_code == 403 and err.error_details[0]['reason'] == 'commentsDisabled':
                 print(err.reason)
                 return None
@@ -142,6 +143,9 @@ class Command(BaseCommand):
             return None
         
     def save_videos(self, youtube, playlist, response_videos):
+
+        if(response_videos == None):
+            return
 
         latest_video = None
         try:
