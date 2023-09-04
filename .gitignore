@@ -6,4 +6,5 @@ db.sqlite3
 .venv 
 env/ 
 venv/
+static/admin
 youtube_history/management/commands/transfer_tables.sql
